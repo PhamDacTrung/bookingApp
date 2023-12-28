@@ -265,7 +265,8 @@ class _CustomerInfoPageWidgetState extends State<CustomerInfoPageWidget>
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 10.0),
                     child: Column(
                       children: [
                         Align(
@@ -288,8 +289,12 @@ class _CustomerInfoPageWidgetState extends State<CustomerInfoPageWidget>
                               Tab(
                                 text: 'Upcoming',
                               ),
-                              Tab(
-                                text: 'History',
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 8.0, 8.0, 10.0),
+                                child: Tab(
+                                  text: 'History',
+                                ),
                               ),
                               Tab(
                                 text: 'Feedback',
