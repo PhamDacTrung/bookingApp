@@ -420,6 +420,11 @@ class _NewCustomerPageWidgetState extends State<NewCustomerPageWidget> {
                             ),
                           }, customersRecordReference);
                           if (_model.createNewCustomer != null) {
+                            await _model.createNewCustomer!.reference
+                                .update(createCustomersRecordData(
+                              customerId:
+                                  _model.createNewCustomer?.reference.id,
+                            ));
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
