@@ -80,7 +80,7 @@ class _NewCustomerPageWidgetState extends State<NewCustomerPageWidget> {
             },
           ),
           title: Text(
-            'Page Title',
+            'New customer',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Readex Pro',
                   color: Colors.white,
