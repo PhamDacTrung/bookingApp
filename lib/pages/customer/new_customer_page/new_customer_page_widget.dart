@@ -89,7 +89,7 @@ class _NewCustomerPageWidgetState extends State<NewCustomerPageWidget> {
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 10.0,
+          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,

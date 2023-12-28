@@ -70,11 +70,14 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
         ),
         title: Text(
           'Forgot Password',
-          style: FlutterFlowTheme.of(context).headlineSmall,
+          style: FlutterFlowTheme.of(context).headlineSmall.override(
+                fontFamily: 'Readex Pro',
+                color: FlutterFlowTheme.of(context).info,
+              ),
         ),
         actions: const [],
         centerTitle: false,
-        elevation: 10.0,
+        elevation: 0.0,
       ),
       body: SafeArea(
         top: true,

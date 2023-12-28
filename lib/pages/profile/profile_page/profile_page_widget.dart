@@ -53,6 +53,20 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).appbar,
           automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
           title: Text(
             'Profile',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -63,7 +77,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 10.0,
+          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
