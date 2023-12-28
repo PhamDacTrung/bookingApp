@@ -115,6 +115,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                             const EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
