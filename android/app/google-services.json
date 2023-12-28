@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "417903646412",
+    "firebase_url": "https://bookingapp-425f9-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "bookingapp-425f9",
+    "storage_bucket": "bookingapp-425f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417903646412:android:67f2425cb0a16078c75469",
+        "android_client_info": {
+          "package_name": "com.flutterflow.bookingApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUOahrv3gEKQdLxKNZdH_T3RO1l9zGa-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417903646412:android:949f333c515dcc31c75469",
+        "android_client_info": {
+          "package_name": "com.mycompany.bookingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUOahrv3gEKQdLxKNZdH_T3RO1l9zGa-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
