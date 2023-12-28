@@ -102,222 +102,212 @@ class _ManageCustomerPageWidgetState extends State<ManageCustomerPageWidget> {
                 end: const AlignmentDirectional(-0.17, 1.0),
               ),
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Material(
-                    color: Colors.transparent,
-                    elevation: 20.0,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Material(
+                  color: Colors.transparent,
+                  elevation: 20.0,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0),
+                      topLeft: Radius.circular(0.0),
+                      topRight: Radius.circular(0.0),
+                    ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).appbar,
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(20.0),
                         bottomRight: Radius.circular(20.0),
                         topLeft: Radius.circular(0.0),
                         topRight: Radius.circular(0.0),
                       ),
                     ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).appbar,
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                          topLeft: Radius.circular(0.0),
-                          topRight: Radius.circular(0.0),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 12.0, 0.0),
-                                child: TextFormField(
-                                  controller: _model.textController,
-                                  focusNode: _model.textFieldFocusNode,
-                                  onChanged: (_) => EasyDebounce.debounce(
-                                    '_model.textController',
-                                    const Duration(milliseconds: 100),
-                                    () async {
-                                      await queryCustomersRecordOnce()
-                                          .then(
-                                            (records) =>
-                                                _model.simpleSearchResults =
-                                                    TextSearch(
-                                              records
-                                                  .map(
-                                                    (record) => TextSearchItem
-                                                        .fromTerms(record, [
-                                                      record.phoneNumber,
-                                                      record.displayName]),
-                                                  )
-                                                  .toList(),
-                                            )
-                                                        .search(_model
-                                                            .textController
-                                                            .text)
-                                                        .map((r) => r.object)
-                                                        .toList(),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 12.0, 0.0),
+                              child: TextFormField(
+                                controller: _model.textController,
+                                focusNode: _model.textFieldFocusNode,
+                                onChanged: (_) => EasyDebounce.debounce(
+                                  '_model.textController',
+                                  const Duration(milliseconds: 100),
+                                  () async {
+                                    await queryCustomersRecordOnce()
+                                        .then(
+                                          (records) => _model
+                                              .simpleSearchResults = TextSearch(
+                                            records
+                                                .map(
+                                                  (record) =>
+                                                      TextSearchItem.fromTerms(
+                                                          record, [
+                                                    record.phoneNumber,
+                                                    record.displayName]),
+                                                )
+                                                .toList(),
                                           )
-                                          .onError((_, __) =>
-                                              _model.simpleSearchResults = [])
-                                          .whenComplete(() => setState(() {}));
+                                              .search(
+                                                  _model.textController.text)
+                                              .map((r) => r.object)
+                                              .toList(),
+                                        )
+                                        .onError((_, __) =>
+                                            _model.simpleSearchResults = [])
+                                        .whenComplete(() => setState(() {}));
 
-                                      setState(() {
-                                        _model.isShowFullList = false;
-                                      });
-                                    },
-                                  ),
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    hintText: 'Search customer...',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiary,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    filled: true,
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    prefixIcon: Icon(
-                                      Icons.search_rounded,
+                                    setState(() {
+                                      _model.isShowFullList = false;
+                                    });
+                                  },
+                                ),
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelStyle:
+                                      FlutterFlowTheme.of(context).labelMedium,
+                                  hintText: 'Search customer...',
+                                  hintStyle:
+                                      FlutterFlowTheme.of(context).labelMedium,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                                          .alternate,
+                                      width: 2.0,
                                     ),
-                                    suffixIcon: _model
-                                            .textController!.text.isNotEmpty
-                                        ? InkWell(
-                                            onTap: () async {
-                                              _model.textController?.clear();
-                                              await queryCustomersRecordOnce()
-                                                  .then(
-                                                    (records) => _model
-                                                            .simpleSearchResults =
-                                                        TextSearch(
-                                                      records
-                                                          .map(
-                                                            (record) =>
-                                                                TextSearchItem
-                                                                    .fromTerms(
-                                                                        record,
-                                                                        [
-                                                                  record
-                                                                      .phoneNumber,
-                                                                  record
-                                                                      .displayName]),
-                                                          )
-                                                          .toList(),
-                                                    )
-                                                            .search(_model
-                                                                .textController
-                                                                .text)
-                                                            .map(
-                                                                (r) => r.object)
-                                                            .toList(),
-                                                  )
-                                                  .onError((_, __) => _model
-                                                      .simpleSearchResults = [])
-                                                  .whenComplete(
-                                                      () => setState(() {}));
-
-                                              setState(() {
-                                                _model.isShowFullList = false;
-                                              });
-                                              setState(() {});
-                                            },
-                                            child: Icon(
-                                              Icons.clear,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 22,
-                                            ),
-                                          )
-                                        : null,
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                  validator: _model.textControllerValidator
-                                      .asValidator(context),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  prefixIcon: Icon(
+                                    Icons.search_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                  suffixIcon: _model
+                                          .textController!.text.isNotEmpty
+                                      ? InkWell(
+                                          onTap: () async {
+                                            _model.textController?.clear();
+                                            await queryCustomersRecordOnce()
+                                                .then(
+                                                  (records) => _model
+                                                          .simpleSearchResults =
+                                                      TextSearch(
+                                                    records
+                                                        .map(
+                                                          (record) =>
+                                                              TextSearchItem
+                                                                  .fromTerms(
+                                                                      record, [
+                                                            record.phoneNumber,
+                                                            record.displayName]),
+                                                        )
+                                                        .toList(),
+                                                  )
+                                                          .search(_model
+                                                              .textController
+                                                              .text)
+                                                          .map((r) => r.object)
+                                                          .toList(),
+                                                )
+                                                .onError((_, __) => _model
+                                                    .simpleSearchResults = [])
+                                                .whenComplete(
+                                                    () => setState(() {}));
+
+                                            setState(() {
+                                              _model.isShowFullList = false;
+                                            });
+                                            setState(() {});
+                                          },
+                                          child: Icon(
+                                            Icons.clear,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 22,
+                                          ),
+                                        )
+                                      : null,
                                 ),
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                validator: _model.textControllerValidator
+                                    .asValidator(context),
                               ),
                             ),
-                            Card(
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              elevation: 4.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                icon: Icon(
-                                  Icons.add,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  context.pushNamed(
-                                    'newCustomerPage',
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
-                                    },
-                                  );
-                                },
-                              ),
+                          ),
+                          Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 4.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                          ],
-                        ),
+                            child: FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                Icons.add,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                context.pushNamed(
+                                  'newCustomerPage',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  Padding(
+                ),
+                Expanded(
+                  child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(12.0, 16.0, 12.0, 0.0),
                     child: Container(
@@ -712,8 +702,8 @@ class _ManageCustomerPageWidgetState extends State<ManageCustomerPageWidget> {
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
