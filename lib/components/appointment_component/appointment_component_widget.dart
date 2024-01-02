@@ -35,6 +35,8 @@ class _AppointmentComponentWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => AppointmentComponentModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

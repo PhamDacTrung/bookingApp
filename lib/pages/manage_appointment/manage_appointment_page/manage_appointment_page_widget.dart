@@ -35,6 +35,8 @@ class _ManageAppointmentPageWidgetState
         _model.selectedDate = getCurrentTimestamp;
       });
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -76,6 +76,8 @@ class _AppoitmentDetailWidgetState extends State<AppoitmentDetailWidget> {
     _model.endTimeTextFieldController ??= TextEditingController(
         text: dateTimeFormat('hh:mm aaa', widget.endTime));
     _model.endTimeTextFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

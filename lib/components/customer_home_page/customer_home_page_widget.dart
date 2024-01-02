@@ -120,6 +120,8 @@ class _CustomerHomePageWidgetState extends State<CustomerHomePageWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

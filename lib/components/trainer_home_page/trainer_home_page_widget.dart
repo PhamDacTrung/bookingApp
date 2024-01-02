@@ -29,6 +29,8 @@ class _TrainerHomePageWidgetState extends State<TrainerHomePageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TrainerHomePageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

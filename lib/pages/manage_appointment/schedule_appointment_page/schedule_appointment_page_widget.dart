@@ -46,6 +46,8 @@ class _ScheduleAppointmentPageWidgetState
 
     _model.endTimeTextFieldController ??= TextEditingController();
     _model.endTimeTextFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

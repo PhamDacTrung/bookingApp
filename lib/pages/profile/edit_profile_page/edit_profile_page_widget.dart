@@ -42,6 +42,8 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
     _model.emailAddressController ??=
         TextEditingController(text: currentUserEmail);
     _model.emailAddressFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

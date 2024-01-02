@@ -35,6 +35,8 @@ class _NewCustomerPageWidgetState extends State<NewCustomerPageWidget> {
 
     _model.emailAddressController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
